@@ -23,7 +23,7 @@ $(document).ready(function() {
 </head>
 <body>
     <div>
-        Click here to upload pictures: <input id="file_upload" name="file_upload" type="file" />
+        Click here to upload pictures/video: <input id="file_upload" name="file_upload" type="file" />
     </div>
     <div>
 <?
