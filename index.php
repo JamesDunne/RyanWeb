@@ -16,7 +16,10 @@ $(document).ready(function() {
     'cancelImg' : '/ryan/uploadify/cancel.png',
     'folder'    : '/pics',
     'auto'      : true,
-    'multi'     : true
+    'multi'     : true,
+	'onAllComplete' : function(event,data) {
+        window.location.reload();
+    }
   });
 });
     </script>
@@ -27,24 +30,25 @@ $(document).ready(function() {
     </div>
     <div>
 <?
-  function calc($size) {
-    $kb=1024;
-    $mb=1048576;
-    $gb=1073741824;
-    $tb=1099511627776;
-    if(!$size)
-      return '0 B';
-    elseif($size<$kb)
-      return $size.' B';
-    elseif($size<$mb)
-      return round($size/$kb, 2).' KB';
-    elseif($size<$gb)
-      return round($size/$mb, 2).' MB';
-    elseif($size<$tb)
-      return round($size/$gb, 2).' GB';
-    else
-      return round($size/$tb, 2).' TB';
-  }
+    function calc($size)
+    {
+        $kb=1024;
+        $mb=1048576;
+        $gb=1073741824;
+        $tb=1099511627776;
+        if(!$size)
+            return '0 B';
+        elseif($size<$kb)
+            return $size.' B';
+        elseif($size<$mb)
+            return round($size/$kb, 2).' KB';
+        elseif($size<$gb)
+            return round($size/$mb, 2).' MB';
+        elseif($size<$tb)
+            return round($size/$gb, 2).' GB';
+        else
+            return round($size/$tb, 2).' TB';
+    }
 
     $root = "http://bittwiddlers.org/ryan";
     $dir = "pics/";
