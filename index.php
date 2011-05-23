@@ -90,7 +90,7 @@ $(document).ready(function() {
 ?>
                 <tr>
                     <td><? echo "<a href=\"{$root}/{$file["name"]}\">{$file["name"]}</a>"; ?></td>
-                    <td><? echo calc($file["size"]); ?></td>
+                    <td style="text-align: right"><? echo calc($file["size"]); ?></td>
                     <td><? echo "{$file["type"]}"; ?></td>
                     <td><? echo date('r', $file["lastmod"]); ?></td>
                 </tr>
