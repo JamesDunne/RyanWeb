@@ -65,7 +65,7 @@ $(document).ready(function() {
         if (!is_readable("$dir$entry")) continue;
 
         $retval[] = array(
-            "name" => "$dir$entry",
+            "name" => substr("$dir$entry", strlen($dir)),
             "type" => mime_content_type("$dir$entry"),
             "size" => filesize("$dir$entry"),
             "lastmod" => filemtime("$dir$entry")
