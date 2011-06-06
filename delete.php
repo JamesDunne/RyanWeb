@@ -11,6 +11,7 @@ if ($filename == null)
     return;
 }
 
+error_log('/var/www/ryan/pics/' + $filename);
 unlink('/var/www/ryan/pics/' + $filename);
 
 $js = array('success' => true);
