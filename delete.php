@@ -3,7 +3,7 @@ header('Cache-Control: no-cache, must-revalidate');
 header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 header('Content-type: application/json');
 
-$filename = $POST['filename'];
+$filename = $_POST['filename'];
 if ($filename == null)
 {
     $js = array('success' => false);
@@ -11,7 +11,7 @@ if ($filename == null)
     return;
 }
 
-unlink('pics/' + $GET['filename']);
+unlink('pics/' + $filename);
 
 $js = array('success' => true);
 echo json_encode($js);
