@@ -94,7 +94,7 @@ $(document).ready(function() {
                     <td style="text-align: right"><? echo calc($file["size"]); ?></td>
                     <td><? echo "{$file["type"]}"; ?></td>
                     <td><? echo date('r', $file["lastmod"]); ?></td>
-                    <td><a class="delete_link" href="delete.php" data-filename="<? echo $file["name"]; ?>"></a></td>
+                    <td><a class="delete_link" href="delete.php" data-filename="<? echo $file["name"]; ?>">Delete</a></td>
                 </tr>
 <?
     }
