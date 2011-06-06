@@ -114,7 +114,7 @@ $(document).ready(function() {
                 $.post({
                     url: link.attr('href').val(),
                     data: { filename: filename },
-                    dataType: 'json'
+                    dataType: 'json',
                     success: function(data) {
                         window.location.reload();
                     }
