@@ -113,7 +113,8 @@ $(document).ready(function() {
                     if (!confirm('Confirm deletion of \'' + filename + '\''))
                         return false;
 
-                    $.post({
+                    $.ajax({
+                        type: 'POST',
                         url: link.attr('href'),
                         data: 'filename=' + encodeURIComponent(filename),
                         success: function(data) {
