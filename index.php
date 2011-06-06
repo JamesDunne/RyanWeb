@@ -116,7 +116,7 @@ $(document).ready(function() {
                     $.ajax({
                         type: 'POST',
                         url: link.attr('href'),
-                        data: 'filename=' + encodeURIComponent(filename),
+                        data: { filename: filename },
                         success: function(data) {
                             window.location.reload();
                         }
