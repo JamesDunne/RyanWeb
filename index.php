@@ -107,12 +107,12 @@ $(document).ready(function() {
         $(function() {
             $('a.delete_link').click(function() {
                 var link = $(this);
-                var filename = link.attr('data-filename').val();
+                var filename = link.attr('data-filename');
                 if (!confirm('Confirm deletion of \'' + filename + '\''))
                     return false;
 
                 $.post({
-                    url: link.attr('href').val(),
+                    url: link.attr('href'),
                     data: { filename: filename },
                     dataType: 'json',
                     success: function(data) {
