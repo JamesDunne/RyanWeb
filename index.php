@@ -115,7 +115,7 @@ $(document).ready(function() {
 
                     $.post({
                         url: link.attr('href'),
-                        data: { filename: filename },
+                        data: 'filename=' + encodeURIComponent(filename),
                         success: function(data) {
                             window.location.reload();
                         }
