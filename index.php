@@ -111,14 +111,14 @@ $(document).ready(function() {
                 if (!confirm('Confirm deletion of \'' + filename + '\''))
                     return false;
 
-                $.post(
+                $.post({
                     url: link.attr('href').val(),
                     data: { filename: filename },
                     dataType: 'json'
                     success: function(data) {
                         window.location.reload();
                     }
-                );
+                });
                 return false;
             });
         });
