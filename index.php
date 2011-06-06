@@ -106,20 +106,25 @@ $(document).ready(function() {
     <!--
         $(function() {
             $('a.delete_link').click(function() {
-                var link = $(this);
-                var filename = link.attr('data-filename');
-                if (!confirm('Confirm deletion of \'' + filename + '\''))
-                    return false;
+                try
+                {
+                    var link = $(this);
+                    var filename = link.attr('data-filename');
+                    if (!confirm('Confirm deletion of \'' + filename + '\''))
+                        return false;
 
-                $.post({
-                    url: link.attr('href'),
-                    data: { filename: filename }.serialize(),
-                    dataType: 'json',
-                    success: function(data) {
-                        window.location.reload();
-                    }
-                });
-                return false;
+                    $.post({
+                        url: link.attr('href'),
+                        data: { filename: filename },
+                        success: function(data) {
+                            window.location.reload();
+                        }
+                    });
+                }
+                finally
+                {
+                    return false;
+                }
             });
         });
     //-->
