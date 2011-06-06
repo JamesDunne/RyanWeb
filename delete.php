@@ -11,7 +11,7 @@ if ($filename == null)
     return;
 }
 
-unlink('pics/' + $filename);
+unlink('/var/www/ryan/pics/' + $filename);
 
 $js = array('success' => true);
 echo json_encode($js);
