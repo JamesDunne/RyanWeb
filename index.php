@@ -81,6 +81,7 @@ $(document).ready(function() {
                     <th>Size</th>
                     <th>Type</th>
                     <th>Last Modified</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -93,6 +94,7 @@ $(document).ready(function() {
                     <td style="text-align: right"><? echo calc($file["size"]); ?></td>
                     <td><? echo "{$file["type"]}"; ?></td>
                     <td><? echo date('r', $file["lastmod"]); ?></td>
+                    <td><a class="delete_link" href="delete.php" data-filename="<? echo file["name"]; ?>"></a></td>
                 </tr>
 <?
     }
@@ -100,5 +102,27 @@ $(document).ready(function() {
             </tbody>
         </table>
     </div>
+    <script>
+    <!--
+        $(function() {
+            $('a.delete_link').click(function() {
+                var link = $(this);
+                var filename = link.attr('data-filename').val();
+                if (!confirm('Confirm deletion of ''' + filename + ''''))
+                    return false;
+
+                $.post(
+                    url: link.attr('href').val(),
+                    data: { filename: filename },
+                    dataType: 'json'
+                    success: function(data) {
+                        window.location.reload();
+                    }
+                );
+                return false;
+            });
+        });
+    //-->
+    </script>
 </body>
 </html>
