@@ -108,7 +108,7 @@ $(document).ready(function() {
             $('a.delete_link').click(function() {
                 var link = $(this);
                 var filename = link.attr('data-filename').val();
-                if (!confirm('Confirm deletion of ''' + filename + ''''))
+                if (!confirm('Confirm deletion of \'' + filename + '\''))
                     return false;
 
                 $.post(
