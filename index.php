@@ -50,6 +50,15 @@ $(document).ready(function() {
             return round($size/$tb, 2).' TB';
     }
 
+    function cmp_lastmod($a, $b)
+    {
+        if ($a["lastmod"] == $b["lastmod"])
+        {
+            return 0;
+        }
+        return $a["lastmod"] > $b["lastmod"] ? -1 : 1;
+    }
+
     $root = "http://bittwiddlers.org/ryan";
     $dir = "pics/";
 
@@ -72,6 +81,9 @@ $(document).ready(function() {
         );
     }
     $d->close();
+
+    // Sort by lastmod descending:
+    usort($retval, 'cmp_lastmod');
 ?>
         <h3>Uploaded files:</h3>
         <table border="0" cellspacing="2">
