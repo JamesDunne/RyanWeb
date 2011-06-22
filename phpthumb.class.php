@@ -1021,7 +1021,7 @@ class phpthumb {
 			} else {
 
 				// relative filename (any OS)
-				if (preg_match('/^'.preg_quote($this->config_document_root).'/', $filename)) {
+				if (preg_match('/^'.preg_quote($this->config_document_root, '/').'/', $filename)) {
 					$AbsoluteFilename = $filename;
 					$this->DebugMessage('ResolveFilenameToAbsolute() NOT prepending $this->config_document_root ('.$this->config_document_root.') to $filename ('.$filename.') resulting in ($AbsoluteFilename = "'.$AbsoluteFilename.'")', __FILE__, __LINE__);
 				} else {
@@ -1063,14 +1063,14 @@ class phpthumb {
 			$AbsoluteFilename = realpath($AbsoluteFilename);
 		}
 		if ($this->iswindows) {
-			$AbsoluteFilename = preg_replace('/^'.preg_quote(realpath($this->config_document_root)).'/i', realpath($this->config_document_root), $AbsoluteFilename);
+			$AbsoluteFilename = preg_replace('/^'.preg_quote(realpath($this->config_document_root), '/').'/i', realpath($this->config_document_root), $AbsoluteFilename);
 			$AbsoluteFilename = str_replace(DIRECTORY_SEPARATOR, '/', $AbsoluteFilename);
 		}
-		if (!$this->config_allow_src_above_docroot && !preg_match('/^'.preg_quote(str_replace(DIRECTORY_SEPARATOR, '/', realpath($this->config_document_root))).'/', $AbsoluteFilename)) {
+		if (!$this->config_allow_src_above_docroot && !preg_match('/^'.preg_quote(str_replace(DIRECTORY_SEPARATOR, '/', realpath($this->config_document_root)), '/').'/', $AbsoluteFilename)) {
 			$this->DebugMessage('!$this->config_allow_src_above_docroot therefore setting "'.$AbsoluteFilename.'" (outside "'.realpath($this->config_document_root).'") to null', __FILE__, __LINE__);
 			return false;
 		}
-		if (!$this->config_allow_src_above_phpthumb && !preg_match('/^'.preg_quote(str_replace(DIRECTORY_SEPARATOR, '/', dirname(__FILE__))).'/', $AbsoluteFilename)) {
+		if (!$this->config_allow_src_above_phpthumb && !preg_match('/^'.preg_quote(str_replace(DIRECTORY_SEPARATOR, '/', dirname(__FILE__)), '/').'/', $AbsoluteFilename)) {
 			$this->DebugMessage('!$this->config_allow_src_above_phpthumb therefore setting "'.$AbsoluteFilename.'" (outside "'.dirname(__FILE__).'") to null', __FILE__, __LINE__);
 			return false;
 		}
@@ -2033,7 +2033,7 @@ class phpthumb {
 				$starpos = strpos($valid_domain, '*');
 				if ($starpos !== false) {
 					$valid_domain = substr($valid_domain, $starpos + 1);
-					if (preg_match('/'.preg_quote($valid_domain).'$/i', $hostname)) {
+					if (preg_match('/'.preg_quote($valid_domain, '/').'$/i', $hostname)) {
 						$domain_is_allowed[$hostname] = true;
 						break;
 					}
