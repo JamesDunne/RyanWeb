@@ -90,7 +90,6 @@ $(document).ready(function() {
             <thead>
                 <tr>
                     <th>Image</th>
-                    <th>Name</th>
                     <th>Size</th>
                     <th>Type</th>
                     <th>Last Modified</th>
@@ -103,8 +102,7 @@ $(document).ready(function() {
     {
 ?>
                 <tr>
-                    <td><? echo "<img src=\"phpThumb.php?src=pics/{$file["name"]}&w=96\" />"; ?></td>
-                    <td><? echo "<a href=\"{$root}/{$dir}/{$file["name"]}\">{$file["name"]}</a>"; ?></td>
+                    <td><? echo "<a href=\"{$root}/{$dir}/{$file["name"]}\" title=\"{$file["name"]}\"><img src=\"phpThumb.php?src=pics/{$file["name"]}&w=96\" /></a>"; ?></td>
                     <td style="text-align: right"><? echo calc($file["size"]); ?></td>
                     <td><? echo "{$file["type"]}"; ?></td>
                     <td><? echo date('r', $file["lastmod"]); ?></td>
