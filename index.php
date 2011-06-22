@@ -89,6 +89,7 @@ $(document).ready(function() {
         <table border="0" cellspacing="2">
             <thead>
                 <tr>
+                    <th>Image</th>
                     <th>Name</th>
                     <th>Size</th>
                     <th>Type</th>
@@ -102,6 +103,7 @@ $(document).ready(function() {
     {
 ?>
                 <tr>
+                    <td><? echo "<img src=\"phpThumb.php?src={$root}/{$dir}/{$file["name"]}&w=96\" />"; ?></td>
                     <td><? echo "<a href=\"{$root}/{$dir}/{$file["name"]}\">{$file["name"]}</a>"; ?></td>
                     <td style="text-align: right"><? echo calc($file["size"]); ?></td>
                     <td><? echo "{$file["type"]}"; ?></td>
