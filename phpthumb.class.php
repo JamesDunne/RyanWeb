@@ -233,7 +233,7 @@ class phpthumb {
 		$this->src            = $sourceFilename;
 		if (is_null($this->config_output_format)) {
 			$sourceFileExtension = strtolower(substr(strrchr($sourceFilename, '.'), 1));
-			if (preg_match('^[a-z]{3,4}$', $sourceFileExtension)) {
+			if (preg_match('/^[a-z]{3,4}$/', $sourceFileExtension)) {
 				$this->config_output_format = $sourceFileExtension;
 				$this->DebugMessage('setSourceFilename('.$sourceFilename.') set $this->config_output_format to "'.$sourceFileExtension.'"', __FILE__, __LINE__);
 			} else {
@@ -1021,7 +1021,7 @@ class phpthumb {
 			} else {
 
 				// relative filename (any OS)
-				if (preg_match('^'.preg_quote($this->config_document_root), $filename)) {
+				if (preg_match('/^'.preg_quote($this->config_document_root).'/', $filename)) {
 					$AbsoluteFilename = $filename;
 					$this->DebugMessage('ResolveFilenameToAbsolute() NOT prepending $this->config_document_root ('.$this->config_document_root.') to $filename ('.$filename.') resulting in ($AbsoluteFilename = "'.$AbsoluteFilename.'")', __FILE__, __LINE__);
 				} else {
@@ -1066,11 +1066,11 @@ class phpthumb {
 			$AbsoluteFilename = preg_replace('/^'.preg_quote(realpath($this->config_document_root)).'/i', realpath($this->config_document_root), $AbsoluteFilename);
 			$AbsoluteFilename = str_replace(DIRECTORY_SEPARATOR, '/', $AbsoluteFilename);
 		}
-		if (!$this->config_allow_src_above_docroot && !preg_match('^'.preg_quote(str_replace(DIRECTORY_SEPARATOR, '/', realpath($this->config_document_root))), $AbsoluteFilename)) {
+		if (!$this->config_allow_src_above_docroot && !preg_match('/^'.preg_quote(str_replace(DIRECTORY_SEPARATOR, '/', realpath($this->config_document_root))).'/', $AbsoluteFilename)) {
 			$this->DebugMessage('!$this->config_allow_src_above_docroot therefore setting "'.$AbsoluteFilename.'" (outside "'.realpath($this->config_document_root).'") to null', __FILE__, __LINE__);
 			return false;
 		}
-		if (!$this->config_allow_src_above_phpthumb && !preg_match('^'.preg_quote(str_replace(DIRECTORY_SEPARATOR, '/', dirname(__FILE__))), $AbsoluteFilename)) {
+		if (!$this->config_allow_src_above_phpthumb && !preg_match('/^'.preg_quote(str_replace(DIRECTORY_SEPARATOR, '/', dirname(__FILE__))).'/', $AbsoluteFilename)) {
 			$this->DebugMessage('!$this->config_allow_src_above_phpthumb therefore setting "'.$AbsoluteFilename.'" (outside "'.dirname(__FILE__).'") to null', __FILE__, __LINE__);
 			return false;
 		}
@@ -1172,7 +1172,7 @@ class phpthumb {
 				$commandline .= ' -help';
 				$IMhelp_lines = explode("\n", phpthumb_functions::SafeExec($commandline));
 				foreach ($IMhelp_lines as $line) {
-					if (preg_match('^[\+\-]([a-z\-]+) ', trim($line), $matches)) {
+					if (preg_match('/^[\+\-]([a-z\-]+) /', trim($line), $matches)) {
 						$IMoptions[$matches[1]] = true;
 					}
 				}
@@ -1359,7 +1359,7 @@ class phpthumb {
 							$borderThickness = 0;
 							if (!empty($this->fltr)) {
 								foreach ($this->fltr as $key => $value) {
-									if (preg_match('^bord\|([0-9]+)', $value, $matches)) {
+									if (preg_match('/^bord\|([0-9]+)/', $value, $matches)) {
 										$borderThickness = $matches[1];
 										break;
 									}
@@ -1754,9 +1754,9 @@ class phpthumb {
 											$color = ($this->bc ? $this->bc : '000000');
 										}
 										$commandline .= ' -border '.$width.' -bordercolor "#'.$color.'"';
-										if (preg_match(' \-crop ([0-9]+)x([0-9]+)\+0\+0 ', $commandline, $matches)) {
+										if (preg_match('/ \-crop ([0-9]+)x([0-9]+)\+0\+0 /', $commandline, $matches)) {
 											$commandline = str_replace(' -crop '.$matches[1].'x'.$matches[2].'+0+0 ', ' -crop '.($matches[1] - (2 * $width)).'x'.($matches[2] - (2 * $width)).'+0+0 ', $commandline);
-										} elseif (preg_match(' \-'.$IMresizeParameter.' ([0-9]+)x([0-9]+) ', $commandline, $matches)) {
+										} elseif (preg_match('/ \-'.$IMresizeParameter.' ([0-9]+)x([0-9]+) /', $commandline, $matches)) {
 											$commandline = str_replace(' -'.$IMresizeParameter.' '.$matches[1].'x'.$matches[2].' ', ' -'.$IMresizeParameter.' '.($matches[1] - (2 * $width)).'x'.($matches[2] - (2 * $width)).' ', $commandline);
 										}
 										$successfullyProcessedFilters[] = $filterkey;
