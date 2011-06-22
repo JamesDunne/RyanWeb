@@ -106,8 +106,8 @@ class phpthumb_functions {
 
 		// and also inserts dots . before and after any non number so that for example '4.3.2RC1' becomes '4.3.2.RC.1'.
 		// Then it splits the results like if you were using explode('.',$ver). Then it compares the parts starting from left to right.
-		$version1 = eregi_replace('([0-9]+)([A-Z]+)([0-9]+)', '\\1.\\2.\\3', $version1);
-		$version2 = eregi_replace('([0-9]+)([A-Z]+)([0-9]+)', '\\1.\\2.\\3', $version2);
+		$version1 = preg_replace('/([0-9]+)([A-Z]+)([0-9]+)/i', '\\1.\\2.\\3', $version1);
+		$version2 = preg_replace('/([0-9]+)([A-Z]+)([0-9]+)/i', '\\1.\\2.\\3', $version2);
 
 		$parts1 = explode('.', $version1);
 		$parts2 = explode('.', $version1);
@@ -821,7 +821,7 @@ class phpthumb_functions {
 		$startoffset = (!$directory_elements[0] ? 2 : 1);  // unix with leading "/" then start with 2nd element; Windows with leading "c:\" then start with 1st element
 		$open_basedirs = split('[;:]', ini_get('open_basedir'));
 		foreach ($open_basedirs as $key => $open_basedir) {
-			if (ereg('^'.preg_quote($open_basedir), $dirname) && (strlen($dirname) > strlen($open_basedir))) {
+			if (preg_match('^'.preg_quote($open_basedir), $dirname) && (strlen($dirname) > strlen($open_basedir))) {
 				$startoffset = count(explode(DIRECTORY_SEPARATOR, $open_basedir));
 				break;
 			}
@@ -883,7 +883,7 @@ class phpthumb_functions {
 
 
 	function SanitizeFilename($filename) {
-		$filename = ereg_replace('[^'.preg_quote(' !#$%^()+,-.;<>=@[]_{}').'a-zA-Z0-9]', '_', $filename);
+		$filename = preg_replace('[^'.preg_quote(' !#$%^()+,-.;<>=@[]_{}').'a-zA-Z0-9]', '_', $filename);
 		if (phpthumb_functions::version_compare_replacement(phpversion(), '4.1.0', '>=')) {
 			$filename = trim($filename, '.');
 		}
