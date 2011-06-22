@@ -103,7 +103,7 @@ $(document).ready(function() {
     {
 ?>
                 <tr>
-                    <td><? echo "<img src=\"phpThumb.php?src={$root}/{$dir}/{$file["name"]}&w=96\" />"; ?></td>
+                    <td><? echo "<img src=\"phpThumb.php?src=pics/{$file["name"]}&w=96\" />"; ?></td>
                     <td><? echo "<a href=\"{$root}/{$dir}/{$file["name"]}\">{$file["name"]}</a>"; ?></td>
                     <td style="text-align: right"><? echo calc($file["size"]); ?></td>
                     <td><? echo "{$file["type"]}"; ?></td>
