@@ -40,7 +40,12 @@ if (!empty($_FILES)) {
 		mkdir(str_replace('//','/',$targetPath), 0755, true);
 		
 		move_uploaded_file($tempFile,$targetFile);
-		echo str_replace($root,'',$targetFile);
+		if (!empty($_REQUEST['redirect'])) {
+		    header('Location: ' . $_REQUEST['redirect']);
+		    exit();
+		} else {
+		    echo str_replace($root,'',$targetFile);
+		}
 	// } else {
 	// 	echo 'Invalid file type.';
 	// }
