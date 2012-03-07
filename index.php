@@ -19,6 +19,10 @@ $(document).ready(function() {
     'multi'     : true,
 	'onAllComplete' : function(event,data) {
         window.location.reload();
+    },
+    'onSWFReady': function() {
+        $('#nay-flash').css('display', 'none');
+        $('#yay-flash').css('display', 'block');
     }
   });
 });
@@ -26,7 +30,15 @@ $(document).ready(function() {
 </head>
 <body>
     <div>
-        Click here to upload pictures/video: <input id="file_upload" name="file_upload" type="file" />
+        Click here to upload pictures/video:
+        <div id="yay-flash" display="none">
+            <input id="file_upload" name="file_upload" type="file" />
+        </div>
+        <div id="nay-flash">
+            <form action="/ryan/uploadify/uploadify.php?folder=%2Fpics" method="post" enctype="multipart/form-data">
+                <input type="file" name="Filedata" />
+            </form>
+        </div>
     </div>
     <div>
 <?
