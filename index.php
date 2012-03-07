@@ -37,6 +37,7 @@ $(document).ready(function() {
         <div id="nay-flash">
             <form action="/ryan/uploadify/uploadify.php?folder=%2Fpics" method="post" enctype="multipart/form-data">
                 <input type="file" name="Filedata" />
+                <input type="submit" value="Upload" />
             </form>
         </div>
     </div>
