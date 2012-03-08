@@ -32,16 +32,18 @@ $(document).ready(function() {
     <div>
         Click here to upload pictures/video:
         <div id="yay-flash">
-            <span>Flash-friendly:</span>
+            <span>Flash-friendly:</span><br/>
             <input id="file_upload" name="file_upload" type="file" />
         </div>
+        <br/>
         <div id="nay-flash">
-            <span>Mobile-friendly:</span>
+            <span>Mobile-friendly:</span><br/>
             <form action="/ryan/uploadify/uploadify.php?folder=%2Fpics&redirect=%2Fryan%2F" method="post" enctype="multipart/form-data">
                 <input type="file" name="Filedata" />
                 <input type="submit" value="Upload" />
             </form>
         </div>
+        <br/>
     </div>
     <div>
 <?
