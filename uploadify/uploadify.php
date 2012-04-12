@@ -26,14 +26,19 @@ THE SOFTWARE.
 if (!empty($_FILES)) {
     $root = '/var/www/ryan/';
     //$root = $_SERVER['DOCUMENT_ROOT'];
-	$tempFile = $_FILES['Filedata']['tmp_name'];
+    if (strlen($_FILES['Filedata']['name']) > 0) {
+        $file = $_FILES['Filedata'];
+	} else {
+	    $file = $_FILES['userfile'];
+	}
+    $tempFile = $file['tmp_name'];
 	$targetPath = $root . $_REQUEST['folder'] . '/';
-	$targetFile =  str_replace('//','/',$targetPath) . $_FILES['Filedata']['name'];
+	$targetFile =  str_replace('//','/',$targetPath) . $file['name'];
 	
 	// $fileTypes  = str_replace('*.','',$_REQUEST['fileext']);
 	// $fileTypes  = str_replace(';','|',$fileTypes);
 	// $typesArray = split('\|',$fileTypes);
-	// $fileParts  = pathinfo($_FILES['Filedata']['name']);
+	// $fileParts  = pathinfo($file['name']);
 	
 	// if (in_array($fileParts['extension'],$typesArray)) {
 		// Uncomment the following line if you want to make the directory if it doesn't exist
