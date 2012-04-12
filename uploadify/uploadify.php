@@ -28,11 +28,13 @@ if (!empty($_FILES)) {
     //$root = $_SERVER['DOCUMENT_ROOT'];
     if (strlen($_FILES['Filedata']['name']) > 0) {
         $file = $_FILES['Filedata'];
+        $folder = $_REQUEST['folder'];
 	} else {
 	    $file = $_FILES['userfile'];
+	    $folder = 'pics';
 	}
     $tempFile = $file['tmp_name'];
-	$targetPath = $root . $_REQUEST['folder'] . '/';
+	$targetPath = $root . $folder . '/';
 	$targetFile =  str_replace('//','/',$targetPath) . $file['name'];
 	
 	// $fileTypes  = str_replace('*.','',$_REQUEST['fileext']);
